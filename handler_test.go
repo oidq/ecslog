@@ -371,26 +371,25 @@ func TestHandler_Handle_Source(t *testing.T) {
 
 	var file string
 	var line int
+	var expectedOutput any
 	synctest.Test(t, func(t *testing.T) {
 		_, file, line, _ = runtime.Caller(0)
 		ecs.Warn("Hello World",
 			slog.String("event.action", "test"),
 		)
-	})
-
-	expectedOutput := val{
-		"message":    "Hello World",
-		"@timestamp": "2000-01-01T01:00:00+01:00",
-		"event":      val{"action": "test"},
-		"log": val{
-			"level": "WARN",
-			"origin": val{
-				"function": "github.com/oidq/ecslog.TestHandler_Handle_Source.func1",
-				"file":     file,
-				"line":     float64(line + 1),
+		expectedOutput = injectTimestamp(val{
+			"message": "Hello World",
+			"event":   val{"action": "test"},
+			"log": val{
+				"level": "WARN",
+				"origin": val{
+					"function": "github.com/oidq/ecslog.TestHandler_Handle_Source.func1",
+					"file":     file,
+					"line":     float64(line + 1),
+				},
 			},
-		},
-	}
+		})()
+	})
 
 	var output map[string]interface{}
 	err := json.Unmarshal(buff.Bytes(), &output)
