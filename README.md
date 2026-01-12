@@ -1,6 +1,6 @@
 # ECSLog: Slog Handler for ECS logging
 
-[![godoc](http://img.shields.io/badge/godoc-reference-blue.svg?style=flat)](https://godoc.org/github.com/oidq/ecslog) [![license](http://img.shields.io/badge/license-MIT-red.svg?style=flat)](https://raw.githubusercontent.com/rs/zerolog/master/LICENSE)
+[![godoc](http://img.shields.io/badge/godoc-reference-blue.svg?style=flat)](https://godoc.org/github.com/oidq/ecslog) [![license](http://img.shields.io/badge/license-MIT-red.svg?style=flat)](https://raw.githubusercontent.com/oidq/ecslog/master/LICENSE)
 
 This `slog` handler makes structured ECS logging easier with `slog`
 by accepting the dot notation (`event.action`) and producing corresponding
